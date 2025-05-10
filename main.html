@@ -3,103 +3,74 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>happy anniversary alya</title>
+  <title>alya, 1 year</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
+    body, html {
       margin: 0;
       padding: 0;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
+      height: 100%;
       overflow: hidden;
-      color: #ff5c8d;
-      text-shadow: 1px 1px white;
-      background-size: cover;
-      background-position: center;
-      transition: background-image 1s ease-in-out;
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      margin: 10px;
-      text-align: center;
-      text-transform: lowercase;
-      animation: fadeIn 2s ease-in-out;
-      z-index: 2;
-    }
-
-    button {
-      margin-top: 10px;
-      padding: 12px 24px;
-      background-color: #ff91b6;
-      border: none;
-      border-radius: 12px;
+      font-family: 'Courier New', monospace;
       color: white;
-      font-size: 18px;
-      cursor: pointer;
-      box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
-      text-transform: lowercase;
-      transition: transform 0.2s;
-      animation: fadeIn 2.5s ease-in-out;
-      z-index: 2;
+      text-align: center;
+      background: black;
     }
 
-    button:hover {
-      transform: scale(1.05);
+    #bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      opacity: 0.4;
     }
 
-    .letter {
+    .message-container {
       position: absolute;
-      background-color: rgba(255, 255, 255, 0.85);
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
-      max-width: 280px;
-      font-size: 15px;
-      animation: pop 0.6s ease;
-      opacity: 0;
-      line-height: 1.4;
-      text-transform: lowercase;
-      transition: all 1s ease;
-      z-index: 2;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80%;
+      max-width: 800px;
+      font-size: 1.5rem;
+      animation: fadeInOut 6s infinite;
     }
 
-    .hearts {
+    @keyframes fadeInOut {
+      0% { opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    .love-particles {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       pointer-events: none;
-      overflow: hidden;
-      z-index: 1;
+      z-index: 0;
     }
 
     .heart {
+      position: absolute;
       width: 20px;
       height: 20px;
-      background-color: #ff5c8d;
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      transform: translateX(-50%) rotate(45deg);
-      animation: float 8s linear infinite;
+      background: red;
+      transform: rotate(45deg);
+      animation: float 10s linear infinite;
     }
 
     .heart::before,
     .heart::after {
-      content: "";
+      content: '';
+      position: absolute;
       width: 20px;
       height: 20px;
-      background-color: #ff5c8d;
-      position: absolute;
+      background: red;
       border-radius: 50%;
     }
 
@@ -115,131 +86,99 @@
 
     @keyframes float {
       0% {
-        transform: translateX(-50%) translateY(0) rotate(45deg);
+        transform: translateY(100vh) rotate(45deg);
+        opacity: 0;
+      }
+      50% {
         opacity: 1;
       }
       100% {
-        transform: translateX(-50%) translateY(-110vh) rotate(45deg);
+        transform: translateY(-10vh) rotate(45deg);
         opacity: 0;
       }
-    }
-
-    @keyframes pop {
-      0% { transform: scale(0.5); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
     }
   </style>
 </head>
 <body>
-  <div class="hearts"></div>
-  <h1>happy 1-year anniversary alya</h1>
-  <button onclick="startLetterCycle()">read the letters</button>
+  <video autoplay muted loop id="bg-video">
+    <source src="background.mp4" type="video/mp4">
+    your browser does not support the video tag
+  </video>
+
+  <div class="message-container" id="message"></div>
+  <div class="love-particles" id="hearts"></div>
 
   <script>
     const messages = [
-      "from occasional talks to a love so strong, we've come so far.",
-      "no matter the distance, i’ll always cherish every moment we’ve shared.",
-      "we've had our share of challenges, but we’ve always found a way through.",
-      "even though we're far apart now, you’re always in my heart.",
-      "thank you for your strength, your forgiveness, and for being my constant.",
-      "through every hardship, i still believe in us, always will.",
-      "i wish nothing but the best for you, no matter where life takes you.",
-      "i'll always choose you, even through the hardest times.",
-      "i want to make this work forever, through every obstacle that comes our way.",
-      "you’ve taught me that love isn’t always easy, but it’s always worth it.",
-      "no matter the distance, i’ll always be here for you, no matter what.",
-      "i know we’ll make it through anything because we have each other.",
-      "i want to be the one you lean on, now and always.",
-      "no matter what the future holds, i hope we can hold onto each other.",
-      "your dreams are so important to me, and i’ll always support you in everything.",
-      "even on tough days, i remember how much we’ve already overcome.",
-      "you inspire me every day with your dedication and love.",
-      "thank you for choosing me, even when life gets tough.",
-      "i believe in us more than ever, and i can’t wait for our future.",
-      "i’m proud of how far you’ve come, and i’ll always be by your side.",
-      "you make the tough times feel lighter, and the good times feel brighter.",
-      "i know it’s hard, but i’ll wait for you, i’ll always be here.",
-      "every day with you is a reminder of how lucky i am to have you.",
-      "we’ve grown so much together, and i believe we’ll keep growing stronger.",
-      "no matter how many miles are between us, our love always brings us closer.",
-      "you’ve been my greatest support, and i’ll always be yours.",
-      "i’m so proud of you, Alya, and i know you’ll make the world better.",
-      "we’ve fought through everything that’s come our way, and we’re still here.",
-      "i will always fight for us, for you, for our love.",
-      "even though we’re apart, i still feel your love, every single day.",
-      "i know we’ve got a long road ahead, but i’m ready to walk it with you.",
-      "you’ve changed my life for the better, and i can’t wait for what’s next.",
-      "thank you for believing in us, even when it wasn’t easy.",
-      "i just want to be the person who makes your heart feel safe.",
-      "through all the ups and downs, i’m still so grateful for you.",
-      "our love isn’t just a feeling, it’s a commitment i’ll keep forever.",
-      "even in the silence of LDR, i hear your heart beating with mine.",
-      "i hope we never stop growing together, no matter how hard life gets.",
-      "with you, i’m not afraid of the future, because i know we’ll make it through.",
-      "you’re my heart, my home, and i’ll always choose you, no matter what.",
-      "you give me the strength to be better every day, and i’ll always cherish that.",
-      "our love will always be enough to keep us going, no matter what comes.",
-      "i hope i’m the one you turn to when you need love and comfort.",
-      "you’re worth every mile, every moment, every sacrifice.",
-      "i know there will be hard times ahead, but with you, everything is possible.",
-      "thank you for your love, your understanding, and for always being you.",
-      "you’ve helped me believe in forever, and i’ll always want to be with you.",
-      "even when we’re apart, you’re always with me, and i with you.",
-      "thank you for choosing me, even when things weren’t perfect.",
-      "i can’t wait to hold your hand through the rest of our lives, no matter what."
+      "haiii alyaku sayang",
+      "guess whatt??",
+      "it's our one year anniversary!!",
+      "and i made this just for you",
+      "with that, i have a couple of letters i want you to read",
+      "i wanna say thank you for being a wonderful girlfriend",
+      "thank you for being patience",
+      "you've forgiven me so much",
+      "thank you for staying",
+      "even in the hardest times, you stayed",
+      "i hope we always choose each other",
+      "i hope i can be someone worth sticking with",
+      "you’re the highlight of my days",
+      "i miss you more than i say",
+      "i believe in us",
+      "this is just the start",
+      "i want to see your dreams come true",
+      "i want to support you forever",
+      "no matter how busy we get, you matter most",
+      "this love is worth every mile",
+      "you make me want to be better",
+      "i always look forward to your voice",
+      "i’m proud of you every day",
+      "we’re both growing, and that’s beautiful",
+      "thank you for the silly moments",
+      "thank you for being gentle with me",
+      "we’re not perfect, but we’re trying",
+      "i wouldn’t trade this for anything",
+      "you’re the reason i smile more",
+      "we’re learning love together",
+      "every day with you feels like luck",
+      "i’ll always remember our start",
+      "our love is quiet, soft, and strong",
+      "thank you for forgiving, again and again",
+      "i want to be there for your hard days",
+      "i love your heart, your care, your effort",
+      "let's keep building this love",
+      "i hope you feel loved every day",
+      "your happiness is mine too",
+      "even through screens, i feel your warmth",
+      "you matter more than distance",
+      "i want to grow old loving you",
+      "one year down, forever to go",
+      "you’re still the one i choose",
+      "thank you for being alya"
     ];
 
-    const images = [
-      'images/1.jpg', 'images/2.jpg', 'images/3.jpg', 'images/4.jpg',
-      'images/5.jpg', 'images/6.jpg', 'images/7.jpg', 'images/8.jpg',
-      'images/9.jpg', 'images/10.jpg', 'images/11.jpg', 'images/12.jpg'
-    ];
+    let index = 0;
+    const messageElement = document.getElementById("message");
 
-    let currentImageIndex = 0;
-    let currentMessageIndex = 0;
-
-    function cycleBackground() {
-      document.body.style.backgroundImage = `url('${images[currentImageIndex]}')`;
-      currentImageIndex = (currentImageIndex + 1) % images.length;
-      setTimeout(cycleBackground, 5000); // Change every 5 seconds
+    function showMessage() {
+      messageElement.textContent = messages[index];
+      index = (index + 1) % messages.length;
     }
 
-    function spawnHeart() {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.style.left = Math.random() * 100 + "%";
-      document.querySelector(".hearts").appendChild(heart);
-      setTimeout(() => heart.remove(), 8000);
+    setInterval(showMessage, 6000);
+    showMessage();
+
+    // Floating hearts
+    const heartsContainer = document.getElementById('hearts');
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = 6 + Math.random() * 4 + 's';
+      heartsContainer.appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
     }
-
-    setInterval(spawnHeart, 300); // Spawn hearts every 300ms
-
-    function startLetterCycle() {
-      const letterMessage = messages[currentMessageIndex];
-      const letter = document.createElement("div");
-      letter.className = "letter";
-      letter.innerText = letterMessage;
-
-      // Random position on the screen
-      letter.style.top = Math.random() * 80 + "%";
-      letter.style.left = Math.random() * 80 + "%";
-
-      document.body.appendChild(letter);
-      setTimeout(() => {
-        letter.style.opacity = 0;
-        setTimeout(() => letter.remove(), 1000);
-      }, 5000); // Letter stays for 5 seconds before disappearing
-
-      currentMessageIndex = (currentMessageIndex + 1) % messages.length;
-      setTimeout(startLetterCycle, 6000); // Change message every 6 seconds
-    }
-
-    cycleBackground();
+    setInterval(createHeart, 400);
   </script>
 </body>
 </html>
